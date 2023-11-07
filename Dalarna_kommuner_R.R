@@ -1,4 +1,8 @@
 #Här ska vi göra R script Dalarna Kommun
+# ska lägga till demografi
+
+
+
 library(sf)
 library(mapview)
 library(dplyr)

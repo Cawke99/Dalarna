@@ -14,7 +14,7 @@ dalarna_kommun <- st_read(kommun_fil, crs = 3006)
 
 mapview(dalarna_kommun)
 
-# Buffer ska vara över dalarna men blev kommunvis
+# Buffer ska vara över dalarna men blev kommunvis #######
 dalarna_buffer <- st_buffer(dalarna_kommun, 30000)
 
 mapview(dalarna_buffer)

@@ -22,8 +22,24 @@ mapview(dalarna_buffer)
 
 # Fortsätter här när vi har en tabell som vi kan joina
 
-# befolkn_fil <- "C:/Users/sethb/Svag_is_2/svag_is_2/bef_dalarna_23_70.csv"
+bilinnehav_fil <- "bilinnehav_2.csv"
 # 
-# befolkning <- read.csv(befolkn_fil, header = TRUE, sep = ";", dec = ".")
+bilinnehav <- read.csv(bilinnehav_fil, header = TRUE, sep = ";", dec = ".")
+
+bilinnehav <- bilinnehav %>% 
+  mutate(kom_kod = substr(X, 1, 4))
+
+bilinnehav <- bilinnehav %>%
+  mutate(kommun = if_else(nchar(X) > 4, 
+                 substr(X, 5, 
+                        nchar(X)), 
+                 ""))
+
+
+
+bilinnehav <- bilinnehav %>%
+  rename(ingen_bil = Har.ej.personbil.i.trafik, en_bil = Har.1.personbil.i.trafik, tva_bil = Har.2.personbilar.i.trafik)
+
+
 # 
 # View(befolkning)

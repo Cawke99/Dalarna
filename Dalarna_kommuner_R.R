@@ -2,13 +2,13 @@
 # ska lägga till demografi
 
 
-
+library(tidyverse)
 library(sf)
 library(mapview)
 library(dplyr)
 
 
-kommun_fil <- "C:/Users/sethb/Svag_is_2/svag_is_2/Dalarna_kommuner.shp"
+kommun_fil <- "Dalarna_kommuner.shp"
 
 dalarna_kommun <- st_read(kommun_fil, crs = 3006)
 
@@ -40,6 +40,12 @@ bilinnehav <- bilinnehav %>%
 bilinnehav <- bilinnehav %>%
   rename(ingen_bil = Har.ej.personbil.i.trafik, en_bil = Har.1.personbil.i.trafik, tva_bil = Har.2.personbilar.i.trafik)
 
+view(bilinnehav)
+##############
+bilinnehav <- bilinnehav %>% rename(KOM_KOD = kom_kod)
 
-# 
-# View(befolkning)
+library(dplyr)
+result <- full_join(dalarna_kommun, bilinnehav, by = "KOM_KOD")
+
+
+
